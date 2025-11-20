@@ -22,19 +22,22 @@ function MainChat() {
       ]);
       console.log("chatHistory", chatHistory);
       try {
-        const response = await fetch("http://localhost:3000/api/chat", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            prompt: message,
-            history: chatHistory.map((msg) => ({
-              role: msg.sender,
-              content: msg.content,
-            })),
-          }),
-        });
+        const response = await fetch(
+          "https://hci-ai-virid.vercel.app/api/chat",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              prompt: message,
+              history: chatHistory.map((msg) => ({
+                role: msg.sender,
+                content: msg.content,
+              })),
+            }),
+          }
+        );
 
         const data = await response.json();
         console.log(data);
